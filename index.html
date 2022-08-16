@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="asset/css/bootstrap.min.css">
+    <link rel="stylesheet" href="asset/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+    <link rel="stylesheet" href="asset/css/anilibarary.css">
+    <link rel="stylesheet" href="asset/css/card.css">
+    <link rel="stylesheet" href="asset/css/feedback.css">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="stylesheet" href="asset/css/index.css">
+    <title>Title</title>
+</head>
+
+<body>
+    <!-- navbar start -->
+    <div class="uzair">
+        <div class="head1 fixed-top">
+    <div class=" container">
+            <header class="head mb-0 pb-0">
+                <p class="d-sm-block d-none"><i class="fa-solid fa-user pe-2"></i></p>
+                <img src="asset/img/logo.png" alt="TFS LOGO">
+                <ul class="icon">
+
+                    <a href="search.html"><i class="fa-solid fa-magnifying-glass pe-2"></i></a>
+
+                    <a href="cart.html"><i class="fa-solid fa-cart-plus pe-2"></i> <span id="cartCount">0</span> </a>
+
+
+                    </li>
+
+                    <span class="  text-dark p-1 rounded " style="font-size:14px;"> Visitor Count <sup></sup> </span>
+                </ul>
+            </header>
+
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <p class="d-sm-none d-block text-dark"><i class="fa-solid fa-user me-2"></i></p>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link " onclick="pageroutes('home')" href="#">HOME</a>
+                            </li>
+
+                            <li class="nav-item"><a class="nav-link" onclick="pageroutes('product')"
+                                    href="#">Products</a></li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="pageroutes('feedback')" href="#">FEEDBACK</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="pageroutes('about')" href="#">ABOUT </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="pageroutes('contact')" href="#">CONTACT</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    CATEGORIES
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" onclick="pageroutes('t-shirt')" href="#">T-Shirts</a>
+                                    </li>
+                                    <li><a class="dropdown-item" onclick="pageroutes('shirt')" href="#">Shirts</a></li>
+                                    <li><a class="dropdown-item" onclick="pageroutes('pant')" href="#">Pants</a></li>
+                                    <li><a class="dropdown-item" onclick="pageroutes('shoes')" href="#">Shoes</a></li>
+                                </ul>
+                            </li>
+                            <!-- <li>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Dropdown button
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="#">Action</a></li>
+                                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                  </div>
+                            </li> -->
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+
+
+        </div>
+    </div>
+    </div>
+    <!-- navbar end -->
+
+
+    <!-- name messge start -->
+    <div id="messege1" class="position-fixed">
+        <div class="row messege3 p-3  bg-light">
+            <div class="col-md-12 text-center w-100 h-100">
+                <div class=" pb-2">
+                    <img src="asset/img/avatar.jpg" class=" pt-2 rounded-circle" width="100" alt="">
+                    <h3 class="text-center">Please Enter Your First Name</h3>
+                </div>
+                <div class="bg-dark py-2">
+                    <div class="d-flex flex-column justify-content-center aligin-items-center">
+                        <input type="text" class="mx-auto px-5 py-2 mb-2 rounded-3 border-2 border-danger" id="messege2"
+                            placeholder="Please Enter Your Name">
+                        <div class=" text-center">
+                            <button type="button" class=" bg-light btn btn-outline-danger bbtn1 text-dark"
+                                onclick="myclick()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- name messege end -->
+
+
+    <!-- Main Pages -->
+    <main id="page"></main>
+    <!-- Main Pages End -->
+
+
+    <!-- ticker star   -->
+    <marquee class="mb-5"><span id="time"></span><span id="location"></span></marquee>
+    <!-- ticker end -->
+
+
+    <!-- footer start -->
+    <footer class=" head3 py-5">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <a href=" index.html" class="logo"><img src="asset/img/logo.png" height="70px" alt=""> </a>
+                    <p class="">Here you can find enjoyment with full of infromation as you are already awear of it.We
+                        provide tons of information about sea creature and there life.</p>
+                </div>
+                <div class="col-lg-4 col-md-5 col-sm-12 ms-auto text-md-end text-start">
+
+                    <div class="mt-1">
+                        <a class="pe-2 pe-md-2" href="index.html">Home</a><a class="pe-2 pe-md-2"
+                            href="gallery.html">Gallery</a><a class="pe-2 pe-md-2 " href="about.html">About</a><a
+                            href="contact.html">Contact</a>
+                    </div>
+                    <div class="icon my-2 ">
+                        <ul class="list-unstyled">
+                            <li class="mt-3">
+                                <i class="fa-solid fa-envelope-circle-check"></i>
+                                <a href="mailto:fashionthrif@gmail.com">F.thrif@gmail.com</a>
+                            </li>
+                            <li class="icon mt-1"><i class="fa-solid fa-phone"></i><a href="tel:123456789">123 456
+                                    789</a>
+                            </li>
+                            <li class="icon  mt-1 "><i class="fa-solid fa-location-dot"></i>Aptech metro star gate
+                                karachi
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <p>&copy; 2022 with Jenkinson, All rights reserved.</p>
+                </div>
+                <div class="col-lg-4 col-md-5 col-sm-12 ms-auto text-md-end text-start">
+                    <p><a class="me-3" href="sitemap.html"> Site Map</a> <a href="queries_links.html">Queries</a> </p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </footer>
+    <!-- footer end -->
+
+    <!-- modal start -->
+    <div class="modal fade" id="modal12" tabindex="1" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="asset/js/jquery-3.6.0.min.js"></script>
+    <script src="asset/js/bootstrap.bundle.min.js"></script>
+    <script src="asset/js/swiper-bundle.min.js"></script>
+    <script src="asset/js/data.js"></script>
+    <!-- <script src="asset/js/ajax.js"></script> -->
+    <script src="asset/js/main.js"></script>
+    <script>
+
+        function item(img, n) {
+            document.querySelectorAll(".main-image")[n - 1].src = img.src;
+            var opt = n * 4;
+            for (var i = opt - 4; i < opt; i++) {
+                document.querySelectorAll(".options img")[i].classList.remove("active");
+            }
+            img.classList.add("active");
+        }
+
+        const swiper = new Swiper('.swiper', {
+
+            direction: 'horizontal',
+            loop: true,
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+        });
+
+
+    </script>
+</body>
+
+</html>
