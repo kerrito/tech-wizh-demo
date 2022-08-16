@@ -1,0 +1,142 @@
+<!-- !<!DOCTYPE html> -->
+<!-- <script>var page_name="T-SHIRTS";</script> -->
+<!-- <html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="asset/css/card.css">
+<link rel="stylesheet" href="asset/css/anilibarary.css">
+<link rel="icon" type="image/x-icon" href="asset/img/logo.png">
+<title>T-Shirt thrift fashion</title>
+</head>
+<body>
+    <div id="nav"></div>
+    <div>
+    <div id="page_name" class="mt-5 pt-5 text-center an_hesding focus-in-expand-fwd"></div>
+    <div class="row focus-in-expand-fwd" id="breed1"></div>
+</div>
+    <div id="messege1" class="position-fixed"></div> -->
+
+    <div class="container py-5">
+        <!-- header start -->
+        <h1 class="heading mt-5 pt-5 text-center an_hesding">T-SHIRTS</h1>
+        <div class="col-12 d-flex justify-content-center align-item-center mb-2">
+                        <nav class="" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" onclick="pageroutes('home')">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">T-Shirts</li>
+                            </ol>
+                        </nav>
+                    </div>
+                <!-- header end -->
+        <h3 class="text-center focus-in-expand-fwd">MEN T-SHIRTS</h3>
+        <div class="row g-4" id="card_tshirt">
+
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <h3 class="text-center focus-in-expand-fwd">WOMEN T-SHIRTS</h3>
+        <div class="row g-4" id="card_tshirt_women">
+
+        </div>
+    </div>
+
+
+
+    <!-- <div id="show">
+
+    </div>
+    <div id="page_name"></div> -->
+    <!-- <div id="ticker">
+    </div>
+    <div id="footer2"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<script src="asset/js/data_tshirt.js"></script>
+<script src="asset/js/data.js"></script>
+<script src="asset/js/slicing.js"></script>
+<script src="asset/js/main.js"></script>
+<script src="asset/js/cart.js"></script> -->
+<!-- <script>
+    
+for (var i = 0; i < tshirts.length; i++) {
+    document.getElementById("card_tshirt").innerHTML += `
+ <div class="col-md-4 col-sm-12 border-0  mt-md-5 ">
+    
+ <div class="card1 w-100 overflow-hidden rounded">
+ <div class="image-box position-relative w-100 product_name">
+     <img src="asset/img/${tshirts[i].img}" class="main-image w-100 h-100 position-absolute active" >
+     <div class="options position-absolute w-100 text-end">
+     <img src="asset/img/${tshirts[i].img}" onclick="item(this,${i+1})" class="active">
+     <img src="asset/img/${tshirts[i].img2}" onclick="item(this,${i+1})" class="">
+     <img src="asset/img/${tshirts[i].img3}" onclick="item(this,${i+1})" class="">
+     <img src="asset/img/${tshirts[i].img4}" onclick="item(this,${i+1})" class="">
+     </div>
+     </div>
+     <div class="card-data">
+         <div class="heading">
+         <h1>${tshirts[i].heading}</h1>
+         </div>
+         <div class="card-text">
+             <p>${tshirts[i].cardtext}</p>
+             <p class="mt-2">Price : ${tshirts[i].orignalprice} Rs</p>
+             <p class="mt-2">Discount : <span class="text-danger"> ${tshirts[i].discount}</span> Rs</p>
+             <p class="mt-2">Buy Now : ${tshirts[i].finalprice} Rs</p>
+             <p class="mt-2">Stock : ${tshirts[i].stock} </p>
+             </div>
+     
+    <div class="d-flex justify-content-between">
+    <a herf="detail.html?id=${tshirts[i].id}" class="btn btn-outline-danger border-0 mt-2" >DETAILS<i
+    class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    <button class="btn btn-outline-danger border-0 mt-2text-start" onclick="addToCart(${tshirts[i].id})" >ADD TO CART<i
+    class="fa-solid fa-arrow-right-long ms-1"></i></button>
+    </div>
+         </div>
+         </div>
+         </div>
+         `
+     }
+
+     for (var i = 0; i < tshirts_women.length; i++) {
+        document.getElementById("card_tshirt_women").innerHTML += `
+     <div class="col-md-4 col-sm-12 border-0  mt-md-5  ">
+     <div class="card1 w-100 overflow-hidden rounded">
+     <div class="image-box position-relative w-100 product_name">
+         <img src="asset/img/${tshirts_women[i].img}" class="main-image w-100 h-100 position-absolute active" >
+         <div class="options position-absolute w-100 text-end">
+         <img src="asset/img/${tshirts_women[i].img}" onclick="item(this,${i+1})" class="active">
+         <img src="asset/img/${tshirts_women[i].img2}" onclick="item(this,${i+1})" class="">
+         <img src="asset/img/${tshirts_women[i].img3}" onclick="item(this,${i+1})" class="">
+         <img src="asset/img/${tshirts_women[i].img4}" onclick="item(this,${i+1})" class="">
+         </div>
+         </div>
+         <div class="card-data">
+             <div class="heading">
+             <h1>${tshirts_women[i].heading}</h1>
+             </div>
+             <div class="card-text">
+                 <p>${tshirts_women[i].cardtext}</p>
+                 <p class="mt-2">Price : ${tshirts_women[i].orignalprice} Rs</p>
+                 <p class="mt-2">Discount : <span class="text-danger"> ${tshirts_women[i].discount}</span> Rs</p>
+                 <p class="mt-2">Now : ${tshirts_women[i].finalprice} Rs</p>
+                 <p class="mt-2">Stock : ${tshirts_women[i].stock} </p>
+                 </div>
+                 
+    <div class="d-flex justify-content-between">
+    <a href="detail.html?id=${tshirts_women[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+    class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${tshirts_women[i].id})" >ADD TO CART<i
+    class="fa-solid fa-arrow-right-long ms-1"></i></button>
+    </div>
+             </div>
+             </div>
+             `
+         }
+</script> -->
+<!-- </body>
+</html> -->

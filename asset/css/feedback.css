@@ -1,0 +1,39 @@
+
+.uzair2{
+    background-color: #efefef;
+   padding-top: 90px;    
+   padding-bottom: 90px;
+}
+
+.uzair2 .contact-us{
+
+ padding: 50px;
+border-radius: 30px;
+border: 2px solid white;
+background: rgba(255,255,255, 0.5);
+backdrop-filter: blur(5px);
+/* background-color: black; */
+
+}
+
+
+.uzair2 .contact-us input,
+.uzair2 .contact-us textarea{
+    margin: 5px;
+    border: none;
+    outline: none;
+    background-color:transparent;
+    border-bottom: 1px solid black;
+    object-fit: contain;
+   
+    
+}
+.uzair2 .contact-us .btn{
+    background-color: black;
+    color: white;
+    padding: 10px 30px;
+    width: auto;
+    margin-top: 20px;
+    border: none;
+    
+}

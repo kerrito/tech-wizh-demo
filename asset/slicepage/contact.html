@@ -1,0 +1,165 @@
+<!-- <!DOCTYPE html> -->
+<!-- <script>var page_name = "CONTACT";</script> -->
+<!-- <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="asset/css/anilibarary.css">
+    <link rel="stylesheet" href="asset/css/card.css">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="icon" type="image/x-icon" href="asset/img/logo.png">
+    <title>Contact  thrift fashion</title>
+
+</head>
+
+<div id="nav"></div>
+<div>
+    <div id="page_name" class="mt-5 pt-5 text-center an_hesding focus-in-expand-fwd"></div>
+    <div class="row focus-in-expand-fwd" id="breed1"></div>
+
+    <div id="messege1" class="position-fixed"></div>
+
+    <body> -->
+        <div class="uzair3">
+            <div class="container py-5">
+                
+        <h1 class="heading text-center  an_hesding">CONTACT</h1>
+        <div class="col-12 d-flex justify-content-center align-item-center mb-2">
+                        <nav class="" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" onclick="pageroutes('home')">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                            </ol>
+                        </nav>
+                    </div>
+                <h3 class="text-center fw-bold pb-3 focus-in-expand-fwd">We'd Love to Hear from You</h3>
+
+                <!-- <div class="container"> -->
+                <div class="contact-us py-5">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <form>
+                                <div class="container">
+                                    <div class="row">
+                                        <input type="text" pattern="[a-zA-Z ]{3,8}"
+                                            title="Only lower and uper case alphabet and space allowed character should be atleast 3 to 8"
+                                            placeholder="Enter Your Name" height="40px" required>
+                                        <input style="height: 40px;" id="emailAddress"
+                                            pattern="[a-zA-z]{3}+[a-zA-Z0-9-_.]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$"
+                                            title="Please enter valid email" placeholder="Enter your email"
+                                            name="emailAddress" required>
+                                        <input style="height: 40px;" id="phonenumber" pattern="^[+92]+[0-9]{10}$"
+                                            title="Number should start with +92 and should have 13 number"
+                                            placeholder="Enter Your Number eg:+92" name="phonenumber" required>
+                                        <textarea rows="6" placeholder="Enter your message" required></textarea>
+                                        <button type="button" onclick="validation()" class="btn ms-2 ">Submit</button>
+
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 mt-3">
+                            <div class="contact-us-message container">
+                                <h1 class="h1 display-4 focus-in-expand-fwd">CONTACT US</h1>
+                                <p class="pe-md-5">USE THE FORM TO DROP US AN EMAIL OR REACH US THE OLD FASHIONED WAY
+                                    AND DIAL
+                                    >> 123456789
+                                </p>
+                                <p class="pt-3 d-flex flex-column">
+                                <div class=" d-flex flex-row pt-3">
+                                    <i class="fa-solid fa-envelope-circle-check pe-2"></i>
+                                    <a href="mailto:fashionthrif@gmail.com">F.thrif@gmail.com</a>
+                                </div>
+                                <div class=" d-flex flex-row pt-3">
+                                    <i class="fa-solid fa-phone pe-2"></i><a href="tel:123456789">123 456
+                                        789</a></p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+</div>
+
+
+
+
+<!-- <div id="ticker">
+</div>
+<div id="footer2"></div>
+</body>
+
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<script src="asset/js/slicing.js"></script>
+<script src="asset/js/main.js"></script> -->
+
+<script>
+
+
+
+    function validation() {
+    //     alert("ok")
+    //     var uname = document.getElementById("username").value;
+    //     var name_regax = /^[a-zA-Z ]{3,8}$/;
+
+        var emailAddress = document.getElementById("emailAddress")
+        var uemail_regax = /^[a-zA-z]{3}+[a-zA-Z0-9-_.]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$/;
+
+            if (!uemail_regax.test(emailAddress.value)) {
+                document.getElementById(emailAddress).style.border = "2px solid red"
+               } else {
+                document.getElementById(emailAddress).style.border = "2px solid green"
+            
+            }
+
+    //     var phonenumber = document.getElementById("phonenumber").value;
+    //     var phone_regax = /^[+92]+[0-9]{10}$/;
+
+
+    //     if (phone_regax.test(phonenumber)) {
+    //             if (name_regax.test(uname)) {
+    //                 document.getElementById(username).style.border = "0px 2px 0px 0px solid green"
+    //             } else {
+    //                 document.getElementById(username).style.border = " 0px 2px 0px 0px solid red"
+    //             }
+    //         document.getElementById(phonenumber).style.border = "0px 2px 0px 0px solid green"
+    //     } else {
+    //         document.getElementById(phonenumber).style.border = " 0px 2px 0px 0px solid red"
+    //     }
+
+
+
+        // if(uemail_regax.test(emailAddress)){
+        //     document.getElementById(emailAddress).style.border="0px 2px 0px 0px solid green"
+
+        // }
+
+        // var phonenumber=document.getElementById("phonenumber").value;
+        // var phone_regax=/^[+92]+[0-9]{10}$/;
+
+
+        // if(phone_regax.test(phonenumber)){
+
+        //     document.getElementById(phonenumber).style.border="0px 2px 0px 0px solid green"
+        // }
+    }
+</script>
+
+<!-- <script src="Bootstrap/bootstrap-5.1.3-dist/js/bootstrap.js"></script> -->

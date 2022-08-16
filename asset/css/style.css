@@ -1,0 +1,69 @@
+
+body{
+    background-color: #efefef;
+}
+.uzair3 .contact-us{
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur( 5px);
+    border: 2px solid white;
+    border-radius: 30px;
+}
+.uzair3 .contact-us-message{
+    padding-top: 20px;
+    font-weight: bold;
+}
+.uzair3 .contact-us form input,
+.uzair3 .contact-us form textarea{
+    background-color: transparent;
+    margin: 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    object-fit: contain;
+   
+    
+}
+.uzair3 .contact-us .btn{
+    background-color: black;
+    color: white;
+    padding: 10px 30px;
+    width: auto;
+    margin-top: 20px;
+    border: none;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #efefef;
+}
+a{
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+.card1 .image-box{
+    height: 300px;
+}
+.card1 .image-box img.main-image{
+    top: 0;
+    left: 0;
+    /* height: 100%; */
+    object-fit: cover;
+}
+.card1 .image-box .options{
+    bottom: -20px;
+    right: 0;
+}
+.card1 .image-box .options img{
+    width: 40px ;
+    height: 40px ;
+    border-radius: 100px;
+    object-fit: cover;
+    border: 2px solid red;
+    margin: 0 -8px;
+    transform: scale(0.9);
+    transition: 0.5s;
+}
+
+.card1 .image-box .options img.active{
+    border: black;
+    transform: scale(1.1);
+}
+
+.card1 .card-data{
+    padding: 20px;
+}
+
+/*welcome messesge*/
+#messege1{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(72, 73, 74, 0.5);
+    backdrop-filter: blur(1px);
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#messege2{
+    cursor:pointer;
+}
+.bbtn1:hover{
+    opacity: 0.5;
+}
+/*navbar*/
+.uzair .head1{
+    background: rgba(255, 255, 255,0.3);
+    backdrop-filter: blur(5px);
+}
+ .head3{
+    background: rgba(255, 255, 255,0.3);
+    backdrop-filter: blur(5px);
+}
+.uzair .head{
+    padding: 15px;
+    
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.uzair .head img{
+    height:70px; 
+    margin-bottom: 1rem;
+}
+.uzair .navbar{
+    background: rgba(255, 255, 255,0.3);
+    backdrop-filter: blur(5px);
+    color: #2222;
+}
+.uzair .navbar .active{
+opacity: 0.4;
+}
+.uzair .navbar .nav-link{
+    font-weight: 500;
+    color: black;
+}
+.uzair .dropdown-menu{
+    /* margin-top: 10px; */
+    border: none;
+    color: #2222;
+    background: rgb(255 255 255 / 72%);
+    backdrop-filter: blur(1px);
+}
+/* .uzair .dropdown-menu a.active {
+    opacity: 0.4;
+} */
+
+.uzair .icon .fa-solid{
+font-size: 18px;
+color: black;
+}
+.uzair .icon input{
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background-color: transparent;
+}
+.uzair .icon span{
+    font-size: 20px;
+}
+
+/*icon cursor*/
+.fa-magnifying-glass{
+    cursor: pointer;
+}
+
+/*heading */
+.an_hesding{
+padding-top: 120px !important;
+}
+.uzair1 .newheading{
+    margin-top: 120px !important;
+}
+/* cards img */
+.card_img{
+    width: 70px;
+    height: 70px;
+}
+
+
+/* cart index*/
+
+.card_img12{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    
+}
+/*search padding*/
+.search_paneg{
+    margin-top: -10px !important;
+    border-radius: 13px;
+}
+
+/*animation*/
+/*exiting fade*/
+.text-focus-in {
+	-webkit-animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+/*expanding*/
+.tracking-in-expand {
+	-webkit-animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+/* button drop from above*/
+.bounce-top {
+	-webkit-animation: bounce-top 1.5s both;
+	        animation: bounce-top 1.5s both;
+}
+/* fading with comming out*/
+.focus-in-expand-fwd {
+	-webkit-animation: focus-in-expand-fwd 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: focus-in-expand-fwd 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+/* banner*/
+.scale-in-ver-top {
+	-webkit-animation: scale-in-ver-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-ver-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
