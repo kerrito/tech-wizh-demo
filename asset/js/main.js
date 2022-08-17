@@ -59,7 +59,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(5);
-                    cardprint();
+                    cardprint("men");
                 }
             })
             break;
@@ -70,7 +70,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(6);
-                    cardprint();
+                    cardprint("women");
                 }
             })
             break;
@@ -101,7 +101,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(9);
-                    cardprint();
+                    cardprint("pants");
                 }
             })
             break;
@@ -112,7 +112,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(10);
-                    cardprint();
+                    cardprint("shirts");
                 }
             })
             break;
@@ -123,7 +123,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(11);
-                    cardprint();
+                    cardprint("t-shirts");
                 }
             })
             break;
@@ -134,21 +134,9 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(12);
-                    cardprint();
+                    cardprint("shoes");
                 }
-            })
-    
-            break;
-            case "detail":
-                $.ajax({
-                    url: "asset/slicepage/detail.html",
-                    success: function (load) {
-                        document.querySelector("#page").innerHTML = load;
-                        document.querySelector(".nav-link").classList
-                        pageactive(12);
-                    }
-                })
-                break;        
+            })        
     }
     
     }
