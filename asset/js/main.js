@@ -1,3 +1,4 @@
+//page rought
 function pageroutes(page) {
     username();
     counter();
@@ -9,6 +10,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(0);
+                    // counter();
                 }
 
             })
@@ -20,6 +22,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(1);
+                    // counter();
                     cardprint("product");
                 }
             })
@@ -31,6 +34,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(2);
+                    counter();
                 }
             })
             break;
@@ -41,6 +45,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(3);
+                    // counter();
                 }
             })
             break;
@@ -51,6 +56,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(4);
+                    // counter();
                 }
             })
             break;
@@ -61,6 +67,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(1);
+                    // counter();
                     cardprint("men");
                 }
             })
@@ -72,6 +79,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     pageactive(1);
+                    // counter();
                     cardprint("women");
                 }
             })
@@ -82,6 +90,8 @@ function pageroutes(page) {
                 success: function (load) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
+                    cartload();
+                    // counter();
                     // pageactive(7);
                 }
             })
@@ -93,6 +103,7 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     // pageactive(8);
+                    // counter();
                 }
             })
             break;
@@ -102,7 +113,8 @@ function pageroutes(page) {
                 success: function (load) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
-                    pageactive(6);
+                    pageactive(5);
+                    // counter();
                     droopdownactive(2);
                     cardprint("pants");
                 }
@@ -114,7 +126,8 @@ function pageroutes(page) {
                 success: function (load) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
-                    pageactive(6);
+                    pageactive(5);
+                    // counter();
                     droopdownactive(1);
                     cardprint("shirts");
                 }
@@ -126,7 +139,8 @@ function pageroutes(page) {
                 success: function (load) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
-                    pageactive(6);
+                    pageactive(5);
+                    // counter();
                     droopdownactive(0);
                     cardprint("t-shirts");
                 }
@@ -138,7 +152,8 @@ function pageroutes(page) {
                 success: function (load) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
-                    pageactive(6);
+                    pageactive(5);
+                    // counter();
                     droopdownactive(3);
                     cardprint("shoes");
                 }
@@ -197,7 +212,6 @@ if (navigator.geolocation) {
 } else {
     document.getElementById("location").innerHTML = "Geolocation is not supported by this Browser"
 }
-
 function showPosition(position) {
     document.getElementById("location").innerHTML = " Latitude : " + position.coords.latitude + " Longitude : " + position.coords.longitude;
 }
@@ -205,17 +219,14 @@ function showPosition(position) {
 
 //counter
 
-var counti = 1;
 function counter() {
-    var count2 = localStorage.getItem("count");
-
-    if (!count2) {
-        localStorage.setItem("count", counti);
-        document.getElementById("counter").innerHTML = localStorage.getItem("count");
-    } else {
-        localStorage.setItem("count", parseInt(count2) + 1);
-        document.getElementById("counter").innerHTML = localStorage.getItem("count");
-    }
+var count=1;
+if(localStorage.getItem("count")){
+var counti=parseInt( localStorage.getItem("count"))+1;
+document.getElementById("counter").innerHTML=counti;    
+}else{
+    localStorage.setItem("count",count)
+}
 }
 counter();
 //welcome messege
@@ -243,25 +254,82 @@ function username() {
 
 
 //search bar toggle
-function search_bar() {
-    var x = document.getElementById("search_icon")
-    if (x.style.display === "none") {
-        x.style.display = 'block';
-    } else {
-        x.style.display = "none"
-    }
-}
+// function search_bar() {
+//     var x = document.getElementById("search_icon")
+//     if (x.style.display === "none") {
+//         x.style.display = 'block';
+//     } else {
+//         x.style.display = "none"
+//     }
+// }
 
 // add to card 
-function myaddtocard() {
+    var cartdata;
+if(!localStorage.getItem("cart")){
+    cartdata=[]
+}else{
+    cartdata=JSON.parse(localStorage.getItem("cart"))
+}
+function cart(id,name,img,price){
+    cartdata.push({
+        name:name,
+        img:img,
+        price:price,
+        id:id
+    });
+    localStorage.setItem("cart",JSON.stringify(cartdata))
+    document.querySelector("#cartcount").innerHTML = JSON.parse(localStorage.getItem("cart")).length;
+}
+function cartload(){
+    if(localStorage.getItem("cart")){
+    var carttable=JSON.parse(localStorage.getItem("cart"))
+    for(var i=0;i <carttable.length;i++ ){
+        document.querySelector("#cartloop").innerHTML +=`
+            <div class="row d-flex flex-row  pb-2">
+                <div class="col-md-6 col-sm-12 d-flex flex-row">
+                    <div class="col-md-2 col-sm-12 ">
+                        <img src="asset/img/${carttable[i].img}" class="card_img" alt="">
+                    </div>
+                    <div>
+                        <h6 class="ps-3">${carttable[i].name}</h6>
+                        <p class=" ps-3 mt-2 text-danger">Blue Jeans </p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-12 text-center mt-4">
+                    <h6 class="  d-flex flex-row  text-center ps-3 ms-2"><a class="border-0 btn btn-outline-danger"
+                            onclick="calculateQty(1,${i})">-</a><input type="text" id="qty${i}" value="1"
+                            class="border-0 w-25  text-center " readonly> <a class="border-0 btn btn-outline-danger"
+                            onclick="calculateQty(2,${i})">+</a></h6>
+                </div>
+                <div class="col-md-2 col-sm-12 text-center mt-4">
+                    <input type="text" id="price${i}" value="${carttable[i].price}" class="border-0 w-50  text-center" readonly>
+                </div>
+                <div class="col-md-2 col-sm-12 text-center mt-4">
+                    <input type="text" id="totalprice${i}" value="${carttable[i].price}" class="border-0 w-50  text-center" readonly>
+                </div>
+
+            </div>
+        `
+    } 
+
+}
+}
+
+//checkout 
+function checkout(){
+    localStorage.removeItem("cart");
+    cartdata=[];
+    pageroutes("cart");
+    document.getElementById("cartcount").innerHTML=0;
 
 }
 
 
 // cards loop
 function cardprint(cardckeck) {
-
     for (var i = 0; i < data.length; i++) {
+
+        // for (var i = 0; i < data.length; i++) {
         if (cardckeck == "product") {
 
             document.getElementById("cardmulti").innerHTML += `
@@ -292,7 +360,7 @@ function cardprint(cardckeck) {
            <div class="d-flex justify-content-between">
            <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${data[i].id})" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
        </div>
@@ -301,8 +369,8 @@ function cardprint(cardckeck) {
            `
 
         }
-    }
-    for (var i = 0; i < data.length; i++) {
+        // }
+        // for (var i = 0; i < data.length; i++) {
         if (cardckeck == "pants") {
             if (i > 11 && i < 18) {
                 document.getElementById("pant_card12").innerHTML += `
@@ -332,7 +400,7 @@ function cardprint(cardckeck) {
                  <div class="d-flex justify-content-between">
         <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2" >DETAILS<i
         class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        <button class="btn btn-outline-danger border-0 mt-2text-start" onclick="addToCart(${data[i].id})" >ADD TO CART<i
+        <button class="btn btn-outline-danger border-0 mt-2 text-start" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
         class="fa-solid fa-arrow-right-long ms-1"></i></button>
         </div>
              </div>
@@ -340,8 +408,8 @@ function cardprint(cardckeck) {
              `
             }
         }
-    }
-    for (var i = 0; i < data.length; i++) {
+        // }
+        // for (var i = 0; i < data.length; i++) {
         if (cardckeck == "pants") {
             if (i > 41) {
                 document.getElementById("wpants_card12").innerHTML += `
@@ -372,7 +440,7 @@ function cardprint(cardckeck) {
            <div class="d-flex justify-content-between">
            <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${data[i].id})" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')">ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -380,10 +448,10 @@ function cardprint(cardckeck) {
                 `
             }
         }
-    }
-    for (var i = 0; i < data.length; i++) {
+        // }
+        // for (var i = 0; i < data.length; i++) {
         if (cardckeck == "shoes") {
-            if ( i < 6) {
+            if (i < 6) {
                 document.getElementById("card_shoes").innerHTML += `
             <div class="col-md-4 col-sm-12 border-0  mt-md-5 ">
             <div class="card1 w-100 overflow-hidden rounded">
@@ -412,7 +480,7 @@ function cardprint(cardckeck) {
            <div class="d-flex justify-content-between">
            <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${data[i].id})" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -420,10 +488,10 @@ function cardprint(cardckeck) {
                 `
             }
         }
-    }
-    for (var i = 0; i < data.length; i++) {
+        // }
+        // for (var i = 0; i < data.length; i++) {
         if (cardckeck == "shoes") {
-            if ( i > 23 && i< 30) {
+            if (i > 23 && i < 30) {
                 document.getElementById("card_shoes_women").innerHTML += `
             <div class="col-md-4 col-sm-12 border-0  mt-md-5 ">
             <div class="card1 w-100 overflow-hidden rounded">
@@ -431,10 +499,10 @@ function cardprint(cardckeck) {
             <div class="image-box position-relative w-100 product_name">
                 <img src="asset/img/${data[i].img}" class="main-image w-100 h-100 position-absolute active" >
                 <div class="options position-absolute w-100 text-end">
-                <img src="asset/img/${data[i].img}" onclick="item(this,${i-17})" class="active">
-                <img src="asset/img/${data[i].img2}" onclick="item(this,${i-17})" class="">
-                <img src="asset/img/${data[i].img3}" onclick="item(this,${i-17})" class="">
-                <img src="asset/img/${data[i].img4}" onclick="item(this,${i-17})" class="">
+                <img src="asset/img/${data[i].img}" onclick="item(this,${i - 17})" class="active">
+                <img src="asset/img/${data[i].img2}" onclick="item(this,${i - 17})" class="">
+                <img src="asset/img/${data[i].img3}" onclick="item(this,${i - 17})" class="">
+                <img src="asset/img/${data[i].img4}" onclick="item(this,${i - 17})" class="">
                 </div>
                 </div>
                 <div class="card-data">
@@ -452,7 +520,7 @@ function cardprint(cardckeck) {
            <div class="d-flex justify-content-between">
            <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${data[i].id})" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -460,10 +528,10 @@ function cardprint(cardckeck) {
                 `
             }
         }
-    }
-    for (var i = 0; i < data.length; i++) {
+        // }
+        // for (var i = 0; i < data.length; i++) {
         if (cardckeck == "shirts") {
-            if ( i > 17 && i< 24) {
+            if (i > 17 && i < 24) {
                 document.getElementById("shirt_card12").innerHTML += `
             <div class="col-md-4 col-sm-12 border-0  mt-md-5 ">
             <div class="card1 w-100 overflow-hidden rounded">
@@ -471,10 +539,10 @@ function cardprint(cardckeck) {
             <div class="image-box position-relative w-100 product_name">
                 <img src="asset/img/${data[i].img}" class="main-image w-100 h-100 position-absolute active" >
                 <div class="options position-absolute w-100 text-end">
-                <img src="asset/img/${data[i].img}" onclick="item(this,${i-17})" class="active">
-                <img src="asset/img/${data[i].img2}" onclick="item(this,${i-17})" class="">
-                <img src="asset/img/${data[i].img3}" onclick="item(this,${i-17})" class="">
-                <img src="asset/img/${data[i].img4}" onclick="item(this,${i-17})" class="">
+                <img src="asset/img/${data[i].img}" onclick="item(this,${i - 17})" class="active">
+                <img src="asset/img/${data[i].img2}" onclick="item(this,${i - 17})" class="">
+                <img src="asset/img/${data[i].img3}" onclick="item(this,${i - 17})" class="">
+                <img src="asset/img/${data[i].img4}" onclick="item(this,${i - 17})" class="">
                 </div>
                 </div>
                 <div class="card-data">
@@ -492,7 +560,7 @@ function cardprint(cardckeck) {
            <div class="d-flex justify-content-between">
            <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${data[i].id})" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -500,10 +568,10 @@ function cardprint(cardckeck) {
                 `
             }
         }
-    }
-    for (var i = 0; i < data.length; i++) {
+        // }
+        // for (var i = 0; i < data.length; i++) {
         if (cardckeck == "shirts") {
-            if ( i > 35 && i< 42) {
+            if (i > 35 && i < 42) {
                 document.getElementById("wshirt_card12").innerHTML += `
             <div class="col-md-4 col-sm-12 border-0  mt-md-5 ">
             <div class="card1 w-100 overflow-hidden rounded">
@@ -511,10 +579,10 @@ function cardprint(cardckeck) {
             <div class="image-box position-relative w-100 product_name">
                 <img src="asset/img/${data[i].img}" class="main-image w-100 h-100 position-absolute active" >
                 <div class="options position-absolute w-100 text-end">
-                <img src="asset/img/${data[i].img}" onclick="item(this,${i-29})" class="active">
-                <img src="asset/img/${data[i].img2}" onclick="item(this,${i-29})" class="">
-                <img src="asset/img/${data[i].img3}" onclick="item(this,${i-29})" class="">
-                <img src="asset/img/${data[i].img4}" onclick="item(this,${i-29})" class="">
+                <img src="asset/img/${data[i].img}" onclick="item(this,${i - 29})" class="active">
+                <img src="asset/img/${data[i].img2}" onclick="item(this,${i - 29})" class="">
+                <img src="asset/img/${data[i].img3}" onclick="item(this,${i - 29})" class="">
+                <img src="asset/img/${data[i].img4}" onclick="item(this,${i - 29})" class="">
                 </div>
                 </div>
                 <div class="card-data">
@@ -532,7 +600,7 @@ function cardprint(cardckeck) {
            <div class="d-flex justify-content-between">
            <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${data[i].id})" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -540,10 +608,10 @@ function cardprint(cardckeck) {
                 `
             }
         }
-    }
-    for (var i = 0; i < data.length; i++) {
+        // }
+        // for (var i = 0; i < data.length; i++) {
         if (cardckeck == "t-shirts") {
-            if ( i > 5 && i< 12) {
+            if (i > 5 && i < 12) {
                 document.getElementById("card_tshirt").innerHTML += `
             <div class="col-md-4 col-sm-12 border-0  mt-md-5 ">
             <div class="card1 w-100 overflow-hidden rounded">
@@ -551,10 +619,10 @@ function cardprint(cardckeck) {
             <div class="image-box position-relative w-100 product_name">
                 <img src="asset/img/${data[i].img}" class="main-image w-100 h-100 position-absolute active" >
                 <div class="options position-absolute w-100 text-end">
-                <img src="asset/img/${data[i].img}" onclick="item(this,${i-5})" class="active">
-                <img src="asset/img/${data[i].img2}" onclick="item(this,${i-5})" class="">
-                <img src="asset/img/${data[i].img3}" onclick="item(this,${i-5})" class="">
-                <img src="asset/img/${data[i].img4}" onclick="item(this,${i-5})" class="">
+                <img src="asset/img/${data[i].img}" onclick="item(this,${i - 5})" class="active">
+                <img src="asset/img/${data[i].img2}" onclick="item(this,${i - 5})" class="">
+                <img src="asset/img/${data[i].img3}" onclick="item(this,${i - 5})" class="">
+                <img src="asset/img/${data[i].img4}" onclick="item(this,${i - 5})" class="">
                 </div>
                 </div>
                 <div class="card-data">
@@ -572,7 +640,7 @@ function cardprint(cardckeck) {
            <div class="d-flex justify-content-between">
            <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${data[i].id})" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -580,10 +648,10 @@ function cardprint(cardckeck) {
                 `
             }
         }
-    }
-    for (var i = 0; i < data.length; i++) {
+        // }
+        // for (var i = 0; i < data.length; i++) {
         if (cardckeck == "t-shirts") {
-            if ( i > 29 && i< 36) {
+            if (i > 29 && i < 36) {
                 document.getElementById("card_tshirt_women").innerHTML += `
             <div class="col-md-4 col-sm-12 border-0  mt-md-5 ">
             <div class="card1 w-100 overflow-hidden rounded">
@@ -591,10 +659,10 @@ function cardprint(cardckeck) {
             <div class="image-box position-relative w-100 product_name">
                 <img src="asset/img/${data[i].img}" class="main-image w-100 h-100 position-absolute active" >
                 <div class="options position-absolute w-100 text-end">
-                <img src="asset/img/${data[i].img}" onclick="item(this,${i-23})" class="active">
-                <img src="asset/img/${data[i].img2}" onclick="item(this,${i-23})" class="">
-                <img src="asset/img/${data[i].img3}" onclick="item(this,${i-23})" class="">
-                <img src="asset/img/${data[i].img4}" onclick="item(this,${i-23})" class="">
+                <img src="asset/img/${data[i].img}" onclick="item(this,${i - 23})" class="active">
+                <img src="asset/img/${data[i].img2}" onclick="item(this,${i - 23})" class="">
+                <img src="asset/img/${data[i].img3}" onclick="item(this,${i - 23})" class="">
+                <img src="asset/img/${data[i].img4}" onclick="item(this,${i - 23})" class="">
                 </div>
                 </div>
                 <div class="card-data">
@@ -612,7 +680,7 @@ function cardprint(cardckeck) {
            <div class="d-flex justify-content-between">
            <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${data[i].id})" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -620,52 +688,52 @@ function cardprint(cardckeck) {
                 `
             }
         }
-    }
+        // }
 
-    if (cardckeck == "women") {
-        for (var i = 0; i < data.length; i++) {
+        if (cardckeck == "women") {
+            // for (var i = 0; i < data.length; i++) {
             if (data[i].id >= 1025) {
                 document.getElementById("women_card_multi").innerHTML += `
-    <div class="col-md-4 col-sm-12 border-0  mt-md-5  ${data[i].class}">
+     <div class="col-md-4 col-sm-12 border-0  mt-md-5  ${data[i].class}">
     
-    <div class="card1 w-100 overflow-hidden rounded">
-    <div class="image-box position-relative w-100 product_name">
-    <img src="asset/img/${data[i].img}" class="main-image w-100 h-100 position-absolute active" >
-    <div class="options position-absolute w-100 text-end">
+     <div class="card1 w-100 overflow-hidden rounded">
+     <div class="image-box position-relative w-100 product_name">
+     <img src="asset/img/${data[i].img}" class="main-image w-100 h-100 position-absolute active" >
+     <div class="options position-absolute w-100 text-end">
         <img src="asset/img/${data[i].img}" onclick="item(this,${i - 23})"  class="active">
         <img src="asset/img/${data[i].img2}" onclick="item(this,${i - 23})" class="">
         <img src="asset/img/${data[i].img3}" onclick="item(this,${i - 23})" class="">
         <img src="asset/img/${data[i].img4}" onclick="item(this,${i - 23})" class="">
-    </div>
-    </div>
-    <div class="card-data">
-    <div class="heading">
+     </div>
+     </div>
+     <div class="card-data">
+     <div class="heading">
         <h1>${data[i].heading}</h1>
-    </div>
-    <div class="card-text">
+     </div>
+     <div class="card-text">
         <p>${data[i].cardtext}</p>
         <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
         <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
         <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
         <p class="mt-2">Stock : ${data[i].stock} </p>
     
-    </div>
-    <div class="d-flex justify-content-between">
-    <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
-    class="fa-solid fa-arrow-right-long ms-1"></i></a>
-    <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="addToCart(${data[i].id})" >ADD TO CART<i
-    class="fa-solid fa-arrow-right-long ms-1"></i></button>
-    </div>
-    </div>
-    </div>
-    </div>
-    `
+     </div>
+     <div class="d-flex justify-content-between">
+     <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+     class="fa-solid fa-arrow-right-long ms-1"></i></a>
+     <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+     class="fa-solid fa-arrow-right-long ms-1"></i></button>
+     </div>
+     </div>
+     </div>
+     </div>
+     `
             }
         }
+        // }
     }
-
 }
-
+//img active
 function item(img, n) {
     document.querySelectorAll(".main-image")[n - 1].src = img.src;
     var opt = n * 4;
@@ -674,3 +742,26 @@ function item(img, n) {
     }
     img.classList.add("active");
 }
+//calculating value
+function calculateQty(n,id) {
+    var quantity = document.getElementById("qty"+id).value;
+    var price = document.getElementById("price"+id).value;
+    var totalquantity = null;
+    if (n == 2) {
+        if (quantity < 10) {
+            document.getElementById("qty"+id).value = parseInt(quantity) + 1
+            totalquantity = parseInt(document.getElementById("qty"+id).value) * parseInt(price);
+            document.getElementById("totalprice"+id).value = parseInt(totalquantity);
+
+        }
+    }
+    else if (n == 1) {
+        if (quantity > 1) {
+            document.getElementById("qty"+id).value = parseInt(quantity) - 1
+            totalquantity = parseInt(document.getElementById("qty"+id).value) * parseInt(price);
+            document.getElementById("totalprice"+id).value = parseInt(totalquantity);
+        }
+    }
+}
+
+
