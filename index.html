@@ -21,65 +21,75 @@
     <!-- navbar start -->
     <div class="uzair">
         <div class="head1 fixed-top">
-    <div class=" container">
-            <header class="head mb-0 pb-0">
-                <p class="d-sm-block d-none"><i class="fa-solid fa-user pe-2"></i> <span id="username"></span></p>
-                <img src="asset/img/logo.png" alt="TFS LOGO">
-                <ul class="icon">
+            <div class=" container">
+                <header class="head mb-0 pb-0 ">
+                    <p class="d-sm-block d-none "><i class="fa-solid fa-user pe-2"></i> <span id="username"></span></p>
+                    <img src="asset/img/logo.png" class="" alt="TFS LOGO">
+                    <ul class="icon">
 
-                    <a href="search.html"><i class="fa-solid fa-magnifying-glass pe-2"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass pe-2" onclick="pageroutes('search')"></i></a>
 
-                    <a href="#"><i class="fa-solid fa-cart-plus pe-2"  onclick="pageroutes('cart')"></i> <span id="cartcount">0</span> </a>
+                        <a href="#"><i class="fa-solid fa-cart-plus pe-2" onclick="pageroutes('cart')"></i> <span
+                                id="cartcount">0</span> </a>
 
 
-                    </li>
+                        </li>
 
-                    <span class="  text-dark p-1 rounded " style="font-size:14px;"> Visitor Count <sup id="counter"></sup></span>
-                </ul>
-            </header>
+                        <span class="  text-dark p-1 rounded " style="font-size:14px;"> Visitor Count <sup
+                                id="counter"></sup></span>
+                    </ul>
+                </header>
 
-            <nav class="navbar navbar-expand-md navbar-light">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <p class="d-sm-none d-block text-dark"><i class="fa-solid fa-user me-2"></i> <span id="username1"></span></p>
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <p class="d-sm-none d-block text-dark"><i class="fa-solid fa-user me-2"></i> <span
+                                id="username1"></span></p>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link " onclick="pageroutes('home')" href="#">HOME</a>
-                            </li>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link " onclick="pageroutes('home')" href="#">HOME</a>
+                                </li>
 
-                            <li class="nav-item"><a class="nav-link" onclick="pageroutes('product')"
-                                    href="#">Products</a></li>
+                                <li class="nav-item"><a class="nav-link" onclick="pageroutes('product')"
+                                        href="#">Products</a></li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" onclick="pageroutes('feedback')" href="#">FEEDBACK</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" onclick="pageroutes('about')" href="#">ABOUT </a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" onclick="pageroutes('feedback')" href="#">FEEDBACK</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" onclick="pageroutes('about')" href="#">ABOUT </a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" onclick="pageroutes('contact')" href="#">CONTACT</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    CATEGORIES
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" onclick="pageroutes('t-shirt')" href="#">T-Shirts</a>
-                                    </li>
-                                    <li><a class="dropdown-item" onclick="pageroutes('shirt')" href="#">Shirts</a></li>
-                                    <li><a class="dropdown-item" onclick="pageroutes('pant')" href="#">Pants</a></li>
-                                    <li><a class="dropdown-item" onclick="pageroutes('shoes')" href="#">Shoes</a></li>
-                                </ul>
-                            </li>
-                            <!-- <li>
+                                <li class="nav-item">
+                                    <a class="nav-link" onclick="pageroutes('contact')" href="#">CONTACT</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        CATEGORIES
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" onclick="pageroutes('t-shirt')"
+                                                href="#">T-Shirts</a>
+                                        </li>
+                                        <li><a class="dropdown-item" onclick="pageroutes('shirt')" href="#">Shirts</a>
+                                        </li>
+                                        <li><a class="dropdown-item" onclick="pageroutes('pant')" href="#">Pants</a>
+                                        </li>
+                                        <li><a class="dropdown-item" onclick="pageroutes('shoes')" href="#">Shoes</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item d-none">
+                                    <a class="nav-link" onclick="pageroutes('contact')" href="#">CONTACT</a>
+                                </li>
+                                <!-- <li>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                       Dropdown button
@@ -91,16 +101,16 @@
                                     </ul>
                                   </div>
                             </li> -->
-                        </ul>
+                            </ul>
 
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
 
 
 
+            </div>
         </div>
-    </div>
     </div>
     <!-- navbar end -->
 
@@ -192,7 +202,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-                
+
             </div>
         </div>
     </div>
@@ -227,6 +237,8 @@
             },
 
         });
+
+
 
 
     </script>

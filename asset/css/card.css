@@ -152,7 +152,10 @@ padding-top: 120px !important;
     margin-top: -10px !important;
     border-radius: 13px;
 }
-
+/*detail img fit*/
+.main1_img1{
+    object-fit: cover;
+}
 /*animation*/
 /*exiting fade*/
 .text-focus-in {

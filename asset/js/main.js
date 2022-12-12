@@ -1,5 +1,8 @@
 //page rought
 function pageroutes(page) {
+    if(JSON.parse(localStorage.getItem("cart"))){
+    document.querySelector("#cartcount").innerHTML = JSON.parse(localStorage.getItem("cart")).length;
+    }
     username();
     counter();
     switch (page) {
@@ -91,6 +94,8 @@ function pageroutes(page) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
                     cartload();
+                    cardtotal();
+                    pageactive(6);
                     // counter();
                     // pageactive(7);
                 }
@@ -102,6 +107,8 @@ function pageroutes(page) {
                 success: function (load) {
                     document.querySelector("#page").innerHTML = load;
                     document.querySelector(".nav-link").classList
+                    pageactive(6);
+                    cardprint("detail");
                     // pageactive(8);
                     // counter();
                 }
@@ -158,8 +165,19 @@ function pageroutes(page) {
                     cardprint("shoes");
                 }
             })
+            break;
+        case "search":
+        $.ajax({
+                    url:"asset/slicepage/search.html",
+                    success:function(load){
+                    document.querySelector("#page").innerHTML=load;
+                    document.querySelector(".nav-link").classList
+                    mysearch();
+                    pageactive(6);
+}
+        })    
     }
-
+    
 }
 
 
@@ -223,12 +241,14 @@ function counter() {
 var count=1;
 if(localStorage.getItem("count")){
 var counti=parseInt( localStorage.getItem("count"))+1;
-document.getElementById("counter").innerHTML=counti;    
+document.getElementById("counter").innerHTML=counti;
+localStorage.setItem("count",counti)    
 }else{
-    localStorage.setItem("count",count)
+    localStorage.setItem("count",parseInt( count));
+    document.getElementById("counter").innerHTML=count;
 }
 }
-counter();
+// counter();
 //welcome messege
 
 function myclick() {
@@ -262,7 +282,7 @@ function username() {
 //         x.style.display = "none"
 //     }
 // }
-
+//cart page main
 // add to card 
     var cartdata;
 if(!localStorage.getItem("cart")){
@@ -270,12 +290,23 @@ if(!localStorage.getItem("cart")){
 }else{
     cartdata=JSON.parse(localStorage.getItem("cart"))
 }
-function cart(id,name,img,price){
+function cart(id,name,img,price,text){
     cartdata.push({
         name:name,
-        img:img,
+        img:"asset/img/"+img,
         price:price,
-        id:id
+        id:id,
+        text:text
+    });
+    localStorage.setItem("cart",JSON.stringify(cartdata))
+    document.querySelector("#cartcount").innerHTML = JSON.parse(localStorage.getItem("cart")).length;
+}
+function cartd(){
+    cartdata.push({
+        name:document.getElementById("pro_na").innerHTML,
+        img:document.getElementById("i_m_g_1").src,
+        price:document.getElementById("f_price").innerHTML,
+        text:document.getElementById("text").innerHTML
     });
     localStorage.setItem("cart",JSON.stringify(cartdata))
     document.querySelector("#cartcount").innerHTML = JSON.parse(localStorage.getItem("cart")).length;
@@ -284,15 +315,16 @@ function cartload(){
     if(localStorage.getItem("cart")){
     var carttable=JSON.parse(localStorage.getItem("cart"))
     for(var i=0;i <carttable.length;i++ ){
+        var imgmain=`asset/img/${carttable[i].img}`;
         document.querySelector("#cartloop").innerHTML +=`
             <div class="row d-flex flex-row  pb-2">
                 <div class="col-md-6 col-sm-12 d-flex flex-row">
                     <div class="col-md-2 col-sm-12 ">
-                        <img src="asset/img/${carttable[i].img}" class="card_img" alt="">
+                        <img src="${carttable[i].img}" class="card_img" alt="">
                     </div>
                     <div>
                         <h6 class="ps-3">${carttable[i].name}</h6>
-                        <p class=" ps-3 mt-2 text-danger">Blue Jeans </p>
+                        <p class=" ps-3 mt-2 text-danger">${carttable[i].text} </p>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-12 text-center mt-4">
@@ -320,8 +352,7 @@ function checkout(){
     localStorage.removeItem("cart");
     cartdata=[];
     pageroutes("cart");
-    document.getElementById("cartcount").innerHTML=0;
-
+    document.getElementById("cartcount").innerHTML=0;;
 }
 
 
@@ -351,16 +382,16 @@ function cardprint(cardckeck) {
            </div>
            <div class="card-text">
                <p>${data[i].cardtext}</p>
-               <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+               <p class="mt-2"> Price : <del class="text-danger"> ${data[i].orignalprice} Rs </del></p>
                <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
                <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
                <p class="mt-2">Stock : ${data[i].stock} </p>
        
            </div>
            <div class="d-flex justify-content-between">
-           <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+           <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
        </div>
@@ -392,15 +423,15 @@ function cardprint(cardckeck) {
              </div>
              <div class="card-text">
                  <p>${data[i].cardtext}</p>
-                 <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+                 <p class="mt-2">Price : <del class="text-danger">${data[i].orignalprice} Rs </del></p>
                  <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
                  <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
                  <p class="mt-2">Stock : ${data[i].stock} </p>
          </div>
                  <div class="d-flex justify-content-between">
-        <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2" >DETAILS<i
-        class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        <button class="btn btn-outline-danger border-0 mt-2 text-start" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+                 <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
+                 class="fa-solid fa-arrow-right-long ms-1"></i></a>
+        <button class="btn btn-outline-danger border-0 mt-2 text-start" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
         class="fa-solid fa-arrow-right-long ms-1"></i></button>
         </div>
              </div>
@@ -431,16 +462,16 @@ function cardprint(cardckeck) {
                 </div>
                 <div class="card-text">
                     <p>${data[i].cardtext}</p>
-                    <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+                    <p class="mt-2">Price : <del class="text-danger"> ${data[i].orignalprice} Rs </del></p>
                     <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
                     <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
                     <p class="mt-2">Stock : ${data[i].stock} </p>
             </div>
                     
            <div class="d-flex justify-content-between">
-           <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+           <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')">ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')">ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -471,16 +502,16 @@ function cardprint(cardckeck) {
                 </div>
                 <div class="card-text">
                     <p>${data[i].cardtext}</p>
-                    <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+                    <p class="mt-2">Price : <del class="text-danger">${data[i].orignalprice} Rs </del></p>
                     <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
                     <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
                     <p class="mt-2">Stock : ${data[i].stock} </p>
             </div>
                     
            <div class="d-flex justify-content-between">
-           <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+           <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -511,16 +542,16 @@ function cardprint(cardckeck) {
                 </div>
                 <div class="card-text">
                     <p>${data[i].cardtext}</p>
-                    <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+                    <p class="mt-2">Price : <del class="text-danger">${data[i].orignalprice} Rs</del></p>
                     <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
                     <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
                     <p class="mt-2">Stock : ${data[i].stock} </p>
             </div>
                     
            <div class="d-flex justify-content-between">
-           <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+           <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -551,16 +582,16 @@ function cardprint(cardckeck) {
                 </div>
                 <div class="card-text">
                     <p>${data[i].cardtext}</p>
-                    <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+                    <p class="mt-2">Price : <del class="text-danger">${data[i].orignalprice} Rs</del></p>
                     <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
                     <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
                     <p class="mt-2">Stock : ${data[i].stock} </p>
             </div>
                     
            <div class="d-flex justify-content-between">
-           <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+           <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -591,16 +622,16 @@ function cardprint(cardckeck) {
                 </div>
                 <div class="card-text">
                     <p>${data[i].cardtext}</p>
-                    <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+                    <p class="mt-2">Price : <del class="text-danger">${data[i].orignalprice} Rs</del></p>
                     <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
                     <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
                     <p class="mt-2">Stock : ${data[i].stock} </p>
             </div>
                     
            <div class="d-flex justify-content-between">
-           <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+           <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -631,16 +662,16 @@ function cardprint(cardckeck) {
                 </div>
                 <div class="card-text">
                     <p>${data[i].cardtext}</p>
-                    <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+                    <p class="mt-2">Price : <del class="text-danger">${data[i].orignalprice} Rs</del></p>
                     <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
                     <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
                     <p class="mt-2">Stock : ${data[i].stock} </p>
             </div>
                     
            <div class="d-flex justify-content-between">
-           <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+           <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -671,16 +702,16 @@ function cardprint(cardckeck) {
                 </div>
                 <div class="card-text">
                     <p>${data[i].cardtext}</p>
-                    <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+                    <p class="mt-2">Price : <del class="text-danger">${data[i].orignalprice} Rs</del></p>
                     <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
                     <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
                     <p class="mt-2">Stock : ${data[i].stock} </p>
             </div>
                     
            <div class="d-flex justify-content-between">
-           <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+           <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
            class="fa-solid fa-arrow-right-long ms-1"></i></a>
-           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+           <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
            class="fa-solid fa-arrow-right-long ms-1"></i></button>
            </div>
                 </div>
@@ -712,16 +743,16 @@ function cardprint(cardckeck) {
      </div>
      <div class="card-text">
         <p>${data[i].cardtext}</p>
-        <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+        <p class="mt-2">Price : <del class="text-danger">${data[i].orignalprice} Rs</del></p>
         <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
         <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
         <p class="mt-2">Stock : ${data[i].stock} </p>
     
      </div>
      <div class="d-flex justify-content-between">
-     <a href="detail.html?id=${data[i].id}" class="btn btn-outline-danger border-0 mt-2 bounce-top" >DETAILS<i
+     <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
      class="fa-solid fa-arrow-right-long ms-1"></i></a>
-     <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}')" >ADD TO CART<i
+     <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
      class="fa-solid fa-arrow-right-long ms-1"></i></button>
      </div>
      </div>
@@ -732,15 +763,26 @@ function cardprint(cardckeck) {
         }
         // }
     }
-}
-//img active
-function item(img, n) {
-    document.querySelectorAll(".main-image")[n - 1].src = img.src;
-    var opt = n * 4;
-    for (var i = opt - 4; i < opt; i++) {
-        document.querySelectorAll(".options img")[i].classList.remove("active");
+   if(cardckeck == "detail"){         
+var id=localStorage.getItem("caartid")
+for (var i=0 ;i<data.length;i++) {
+    if (data[i].id == id) {
+        document.getElementById("mani_head").innerHTML = data[i].heading;
+        document.getElementById("pro_na").innerHTML = data[i].heading;
+        document.getElementById("text").innerHTML = data[i].cardtext;
+        document.getElementById("i_m_g_1").src = "asset/img/" + data[i].img;
+        document.getElementById("i_m_g_2").src = "asset/img/" + data[i].img2;
+        document.getElementById("i_m_g_3").src = "asset/img/" + data[i].img3;
+        document.getElementById("i_m_g_4").src = "asset/img/" + data[i].img4;
+        document.getElementById("i_m_g_5").src = "asset/img/" + data[i].img;
+        document.getElementById("o_price").innerHTML = data[i].orignalprice;
+        document.getElementById("d_count").innerHTML = data[i].discount;
+        document.getElementById("f_price").innerHTML = data[i].finalprice;
+        document.getElementById("d_stock").innerHTML = data[i].stock;
+
     }
-    img.classList.add("active");
+}
+}
 }
 //calculating value
 function calculateQty(n,id) {
@@ -762,6 +804,140 @@ function calculateQty(n,id) {
             document.getElementById("totalprice"+id).value = parseInt(totalquantity);
         }
     }
+    cardtotal();
 }
+function cardtotal(){
+var total=0
+var datalocal=JSON.parse(localStorage.getItem("cart"));
+if(JSON.parse(localStorage.getItem("cart"))){
+for (var i=0;i< datalocal.length;i++){
+    total+=parseInt( document.getElementById("totalprice"+i).value) ;
+    document.getElementById("totalid").innerHTML="PKR. "+total ;
+}
+}
+}
+//card page functions end
 
+//img active
+function item(img, n) {
+    document.querySelectorAll(".main-image")[n - 1].src = img.src;
+    var opt = n * 4;
+    for (var i = opt - 4; i < opt; i++) {
+        document.querySelectorAll(".options img")[i].classList.remove("active");
+    }
+    img.classList.add("active");
+}
+// main commit detail page functions
 
+//detail page image change function
+
+    function itemss(src) {
+
+document.getElementById('i_m_g_1').src=src;
+    }
+//SUB COMMIT get id of card function
+    function caartid(id){
+        localStorage.setItem("caartid",parseInt(id))
+        pageroutes('detail')
+    }
+// print card
+    function mysearch(){
+        var show=document.getElementById("cardmulti")
+        show.innerHTML=``
+        for (let obj of data){
+          show.innerHTML+=`
+          <div class="col-md-4 col-sm-12 border-0  mt-md-5  ">
+           
+           <div class="card1 w-100 overflow-hidden rounded">
+           <div class="image-box position-relative w-100 product_name">
+               <img src="asset/img/${obj.img}" class="main-image w-100 h-100 position-absolute active" >
+               <div class="options position-absolute w-100 text-end">
+                   <img src="asset/img/${obj.img}" onclick="item(this,${obj.n})" class="active">
+                   <img src="asset/img/${obj.img2}" onclick="item(this,${obj.n})" class="">
+                   <img src="asset/img/${obj.img3}" onclick="item(this,${obj.n})" class="">
+                   <img src="asset/img/${obj.img4}" onclick="item(this,${obj.n})" class="">
+               </div>
+           </div>
+           <div class="card-data">
+               <div class="heading">
+                   <h1>${obj.heading}</h1>
+               </div>
+               <div class="card-text">
+                   <p>${obj.cardtext}</p>
+                   <p class="mt-2">Price : ${obj.orignalprice} Rs</p>
+                   <p class="mt-2">Discount : <span class="text-danger"> ${obj.discount}</span> Rs</p>
+                   <p class="mt-2">Buy Now : ${obj.finalprice} Rs</p>
+                   <p class="mt-2">Stock : ${obj.stock} </p>
+           
+               </div>
+               <div class="d-flex justify-content-between">
+               <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${obj.id})" >DETAILS<i
+               class="fa-solid fa-arrow-right-long ms-1"></i></a>
+               <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${obj.id}','${obj.heading}','${obj.img}','${obj.finalprice}','${obj.cardtext}')" >ADD TO CART<i
+               class="fa-solid fa-arrow-right-long ms-1"></i></button>
+               </div>
+           </div>
+           </div>
+           </div>`
+        }
+    }
+
+// search
+    function searchon(val){
+if(val==""){
+    mysearch();
+} else if(val!=""){
+var show=document.getElementById("cardmulti")
+show.innerHTML=``
+
+// let text = "Mr. Blue has a blue house";
+// let position = text.search(/Blu/);
+for(var i=0;i<data.length;i++){
+    var check=val.toUpperCase()
+    if(data[i].heading.toUpperCase().match(check)!=null){
+        show.innerHTML+=`<div class="col-md-4 col-sm-12 border-0  mt-md-5  ">
+           
+          <div class="card1 w-100 overflow-hidden rounded">
+         <div class="image-box position-relative w-100 product_name">
+                <img src="asset/img/${data[i].img}" class="main-image w-100 h-100 position-absolute active" >
+                <div class="options position-absolute w-100 text-end">
+                    <img src="asset/img/${data[i].img}" onclick="item(this,${i+1})" class="active">
+                    <img src="asset/img/${data[i].img2}" onclick="item(this,${i+1})" class="">
+                    <img src="asset/img/${data[i].img3}" onclick="item(this,${i+1})" class="">
+                    <img src="asset/img/${data[i].img4}" onclick="item(this,${i+1})" class="">
+                </div>
+             </div>
+            <div class="card-data">
+                <div class="heading">
+                    <h1>${data[i].heading}</h1>
+                </div>
+                <div class="card-text">
+                    <p>${data[i].cardtext}</p>
+                    <p class="mt-2">Price : ${data[i].orignalprice} Rs</p>
+                    <p class="mt-2">Discount : <span class="text-danger"> ${data[i].discount}</span> Rs</p>
+                    <p class="mt-2">Buy Now : ${data[i].finalprice} Rs</p>
+                    <p class="mt-2">Stock : ${data[i].stock} </p>
+           
+                </div>
+                <div class="d-flex justify-content-between">
+                <a href="#" class="btn btn-outline-danger border-0 mt-2 bounce-top"  onclick="caartid(${data[i].id})" >DETAILS<i
+                class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cart('${data[i].id}','${data[i].heading}','${data[i].img}','${data[i].finalprice}','${data[i].cardtext}')" >ADD TO CART<i
+                class="fa-solid fa-arrow-right-long ms-1"></i></button>
+                </div>
+            </div>
+            </div>
+            </div>`
+    }
+    
+    // console.log(check)
+}
+// console.log(position)
+}
+    }   
+
+    function searchckeck(){
+        var valuee=document.getElementById("show").value
+        console.log(valuee)
+        searchon(valuee)
+    }

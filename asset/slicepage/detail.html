@@ -1,5 +1,5 @@
 <!-- <!DOCTYPE html> -->
-<script>var page_name="DETAIL";</script>
+<!-- <script>var page_name="DETAIL";</script> -->
 <!-- <html lang="en">
 
 <head>
@@ -27,13 +27,14 @@
     <div id="messege1" class="position-fixed"></div> -->
     <div class="uzair1">
 
-        <div class="container pb-5">
+        <div class="container py-5">
             <!-- header start -->
-        <h1 class="heading text-center  an_hesding">DETAIL</h1>
+        <h1 class="heading text-center  an_hesding" id="mani_head">DETAIL</h1>
         <div class="col-12 d-flex justify-content-center align-item-center mb-2">
                         <nav class="" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#" onclick="pageroutes('home')">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#" onclick="pageroutes('product')">Product</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Detail</li>
                             </ol>
                         </nav>
@@ -45,28 +46,31 @@
 
                     <div class="col-md-6 detail">
 
-                        <img src="asset/img/sport1.1.webp" id="i_m_g_1" class="w-100 rounded .main1_img1" alt="">
+                        <img src="asset/img/sport1.1.webp" id="i_m_g_1" class="w-100 rounded main1_img1" alt="">
 
                     </div>
 
                     <div class="col-md-4 detail-text">
 
                         <h3 class="mt-5 optino" id="pro_na">Product name</h3>
-                        <h6 class="mt-3 d-flex justify-content-between"><span>Price:</span><span id="0_price">PKR
-                                1300</span></h6>
+                        <h5 id="text"></h5>
+                        <h6 class="mt-3 d-flex justify-content-between"><span>Price:</span><span ><del class="text-danger"> PKR </del><del id="o_price" class="text-danger">
+                                1300</del></span></h6>
                         <p class="mt-3 d-flex justify-content-between"><span>Discount</span><span
                                 id="d_count">10%Off</span></p>
                         <p class="mt-3 d-flex justify-content-between"><span>Final price</span><span
-                                id="f_price">PKR1000</span></p>
+                                >PKR <span id="f_price">1000</span> </span></p>
                         <p class="mt-3 d-flex justify-content-between"><span>Used</span><span>2 Month</span></p>
                         <p class="mt-3 d-flex justify-content-between"><span>Stock</span><span id="d_stock">24</span>
                         </p>
                         <div class="options1">
-                            <img src="asset/img/sport1.1.webp" class="mt-3" id="i_m_g_5" onclick="item(this.src)">
-                            <img src="asset/img/sport1.2.webp" class="mt-3" id="i_m_g_2" onclick="item(this.src)">
-                            <img src="asset/img/sport1.3.webp" class="mt-3" id="i_m_g_3" onclick="item(this.src)">
-                            <img src="asset/img/sport1.4.webp" class="mt-3" id="i_m_g_4" onclick="item(this.src)">
+                            <img src="asset/img/sport1.1.webp" class="mt-3" id="i_m_g_5" onclick="itemss(this.src)">
+                            <img src="asset/img/sport1.2.webp" class="mt-3" id="i_m_g_2" onclick="itemss(this.src)">
+                            <img src="asset/img/sport1.3.webp" class="mt-3" id="i_m_g_3" onclick="itemss(this.src)">
+                            <img src="asset/img/sport1.4.webp" class="mt-3" id="i_m_g_4" onclick="itemss(this.src)">
                         </div>
+                        <button class="btn btn-outline-danger border-0 mt-2text-start bounce-top" onclick="cartd()" >ADD TO CART<i
+                        class="fa-solid fa-arrow-right-long ms-1"></i></button>
 
                     </div>
 
